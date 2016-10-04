@@ -1,18 +1,15 @@
 let http = require('http')
+let fs = require('fs')
 
 http
     .createServer((req, res) => {
-      if (req.method === 'POST') {
-        res.writeHead(200, {
-          'Content-Type': 'text/html'
-        })
-        res.write('You opened the test POST page, Congrats!')
+      fs.readFile('./index.html', (err, data) => {
+        // TODO: manage the err as proper res
+        if (err) console.log(err)
+        res.writeHead(200)
+        res.write(data)
         res.end()
-      } else if (req.method === 'GET') {
-        res.writeHead(500)
-        res.write('Internal server error - YANA')
-        res.end()
-      }
+      })
     })
-    .listen(1357)
+    .listen(1234)
 
