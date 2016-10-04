@@ -1,0 +1,14 @@
+{
+  "name": "test-node-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "YanaSlavcheva",
+  "license": "MIT",
+  "engine": "6.5.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "standard": "8.3.0"
+  }
+}
