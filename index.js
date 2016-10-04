@@ -27,9 +27,20 @@ http
           res.end()
         })
       } else {
-        res.writeHead(404)
-        res.write('404 Page Not Found')
-        res.end()
+        fs.readFile('.' + parsedUrl, (err, data) => {
+          // TODO: fix security issue, pls ;)
+          // TODO: allow getting files only fron content folder
+          if (err) {
+            res.writeHead(404)
+            res.write('404 Page Not Found')
+            res.end()
+            return
+          }
+
+          res.writeHead(200)
+          res.write(data)
+          res.end()
+        })
       }
     })
     .listen(portNumber)
