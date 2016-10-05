@@ -1,6 +1,6 @@
-let favicon = require('./handlers/favicon')
-let homePage = require('./handlers/home-page')
-let readFile = require('./handlers/read-file')
+let favicon = require('./favicon')
+let homePage = require('./home-page')
+let readFile = require('./read-file')
 
 module.exports = [
   favicon,
