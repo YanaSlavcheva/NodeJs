@@ -1,21 +1,11 @@
-// 02:05:17
-
 let http = require('http')
 
-let favicon = require('./handlers/favicon')
-let homePage = require('./handlers/home-page')
-let readFile = require('./handlers/read-file')
+let handlers = require('./handlers/index')
 
 let portNumber = 1112
 
 http
     .createServer((req, res) => {
-      let handlers = [
-        favicon,
-        homePage,
-        readFile
-      ]
-
       for (let handler of handlers) {
         let readNextHandler = handler(req, res)
         if (!readNextHandler) break
