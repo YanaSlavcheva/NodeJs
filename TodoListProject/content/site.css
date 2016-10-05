@@ -1,0 +1,8 @@
+.big-text {
+    font-size: 72px;
+}
+
+.nav-list {
+    display: inline-block;
+    list-style-type: none;
+}

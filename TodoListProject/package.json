@@ -1,0 +1,15 @@
+{
+  "name": "node-js-lab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "YanaSlavcheva",
+  "license": "MIT",
+  "engine": "6.5.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "multiparty": "4.1.2",
+    "standard": "8.3.0"
+  }
+}

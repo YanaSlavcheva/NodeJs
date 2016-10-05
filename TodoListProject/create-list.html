@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New TODO List</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title" placeholder="Enter the title of the task" />
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea name="description" placeholder="Enter a short description of the task"></textarea>
+        </div>
+        <div>
+            <input type="file" name="file">
+        </div>
+
+        <input type="submit" value="Create Task" />
+    </form>
+</body>
+</html>
