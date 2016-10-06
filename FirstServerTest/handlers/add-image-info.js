@@ -35,9 +35,9 @@ module.exports = function (req, res, imagesInfo) {
           key: postData['name'],
           value: postData['url']
         })
-      })
 
-      console.log(imagesInfo)
+        console.log(imagesInfo)
+      })
 
       res.writeHead(200)
       res.write('Image info added successfully')
