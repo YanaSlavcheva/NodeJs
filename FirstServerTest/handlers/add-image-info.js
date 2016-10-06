@@ -33,20 +33,29 @@ module.exports = function (req, res) {
       req.on('end', () => {
         let postData = qs.parse(body)
 
-        let myImageInfo = ({
-          name: postData['name'],
-          url: postData['url']
-        })
+        if (!postData['name'] || !postData['url']) {
+          res.writeHead(200, {
+            Status: 'WARNING',
+            Code: 'WARNING-CODE'
+          })
+          res.write('Please, fill some data first')
+          res.end()
+        } else {
+          let myImageInfo = ({
+            name: postData['name'],
+            url: postData['url']
+          })
 
-        imagesInfo.push(myImageInfo)
+          imagesInfo.push(myImageInfo)
 
-        console.log(imagesInfo)
+          console.log(imagesInfo)
+
+          // TODO: redirect or show some proper html
+          res.writeHead(200)
+          res.write('Image info added successfully')
+          res.end()
+        }
       })
-
-      // TODO: redirect or show some proper html
-      res.writeHead(200)
-      res.write('Image info added successfully')
-      res.end()
     }
   } else {
     continueWithNextHandler = true
