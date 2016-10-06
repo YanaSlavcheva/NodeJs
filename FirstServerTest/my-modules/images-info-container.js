@@ -1,3 +1,3 @@
 let imagesInfoList = []
 
-module.exports.imagesList = imagesInfoList
+module.exports = imagesInfoList

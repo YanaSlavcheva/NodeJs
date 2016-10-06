@@ -3,7 +3,6 @@ let fs = require('fs')
 let qs = require('querystring')
 
 let imagesInfo = require('./../my-modules/images-info-container.js')
-let imagesList = imagesInfo.imagesList
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -35,15 +34,16 @@ module.exports = function (req, res) {
         let postData = qs.parse(body)
 
         let myImageInfo = ({
-          imageName: postData['name'],
-          imageUrl: postData['url']
+          name: postData['name'],
+          url: postData['url']
         })
 
-        imagesList.push(myImageInfo)
+        imagesInfo.push(myImageInfo)
 
-        console.log(imagesList)
+        console.log(imagesInfo)
       })
 
+      // TODO: redirect or show some proper html
       res.writeHead(200)
       res.write('Image info added successfully')
       res.end()
