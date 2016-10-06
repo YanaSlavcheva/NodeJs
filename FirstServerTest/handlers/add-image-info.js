@@ -35,6 +35,10 @@ module.exports = function (req, res) {
           value: postData['url']
         }]
       })
+
+      res.writeHead(200)
+      res.write('Image info added successfully')
+      res.end()
     }
   }
 }
