@@ -2,7 +2,8 @@ let url = require('url')
 let fs = require('fs')
 let qs = require('querystring')
 
-module.exports = function (req, res) {
+module.exports = function (req, res, imagesInfo) {
+  let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
   if (req.pathname === '/add-image-info') {
@@ -30,15 +31,21 @@ module.exports = function (req, res) {
       req.on('end', () => {
         let postData = qs.parse(body)
 
-        let imageInfo = [{
+        imagesInfo.push = ({
           key: postData['name'],
           value: postData['url']
-        }]
+        })
       })
+
+      console.log(imagesInfo)
 
       res.writeHead(200)
       res.write('Image info added successfully')
       res.end()
     }
+  } else {
+    continueWithNextHandler = true
   }
+
+  return continueWithNextHandler
 }
