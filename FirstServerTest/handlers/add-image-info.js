@@ -2,7 +2,10 @@ let url = require('url')
 let fs = require('fs')
 let qs = require('querystring')
 
-module.exports = function (req, res, imagesInfo) {
+let imagesInfo = require('./../my-modules/images-info-container.js')
+let imagesList = imagesInfo.imagesList
+
+module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
@@ -31,12 +34,14 @@ module.exports = function (req, res, imagesInfo) {
       req.on('end', () => {
         let postData = qs.parse(body)
 
-        imagesInfo.push = ({
-          key: postData['name'],
-          value: postData['url']
+        let myImageInfo = ({
+          imageName: postData['name'],
+          imageUrl: postData['url']
         })
 
-        console.log(imagesInfo)
+        imagesList.push(myImageInfo)
+
+        console.log(imagesList)
       })
 
       res.writeHead(200)

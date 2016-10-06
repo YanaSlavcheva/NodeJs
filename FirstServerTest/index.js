@@ -6,10 +6,8 @@ let portNumber = 1112
 
 http
     .createServer((req, res) => {
-      let imagesInfo = []
-
       for (let handler of handlers) {
-        let readNextHandler = handler(req, res, imagesInfo)
+        let readNextHandler = handler(req, res)
         if (!readNextHandler) break
       }
     })
