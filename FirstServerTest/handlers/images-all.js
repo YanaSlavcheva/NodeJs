@@ -10,8 +10,6 @@ module.exports = function (req, res) {
   req.pathname = req.pathname || url.parse(req.url).pathname
 
   var template = 'images-all.html'
-
-  // var data = {images: [{name: 'Ryan Pays', url: 'http://www.ryanpays.com'}, {name: 'foo', url: 'http://www.google.com'}]}
   var data = {images: imagesInfo}
 
   if (req.pathname === '/images/all') {

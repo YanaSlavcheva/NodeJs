@@ -42,7 +42,10 @@ module.exports = function (req, res) {
           res.write('Please, fill some data first')
           res.end()
         } else {
+          var numberOfImagesSavedByNow = Object.keys(imagesInfo).length
+
           let myImageInfo = ({
+            id: numberOfImagesSavedByNow + 1,
             name: postData['name'],
             url: postData['url']
           })

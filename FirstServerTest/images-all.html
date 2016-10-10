@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>All images info</title>
 </head>
+
 <body>
     <h1>All Images</h1>
     <ul>{{#images}}
-        <li>{{name}} - {{url}}</li>
-    {{/images}}</ul>
+        <li>
+            <a href="/images/details/{{id}}">{{name}}</a>
+        </li>
+        {{/images}}</ul>
 </body>
+
 </html>
