@@ -16,6 +16,8 @@ module.exports = function (req, res) {
     }
   })
 
+  var data = {images: [{name: 'Ryan Pays', url: 'http://www.ryanpays.com'}, {name: 'foo', url: 'http://www.google.com'}]}
+
   if (req.pathname === '/images/all') {
     fs.readFile(itemToDisplay[0].template, function (err, template) {
       if (err) throw err
@@ -24,7 +26,7 @@ module.exports = function (req, res) {
         'Content-Type': 'text/html'
       })
       template = template.toString()
-      res.write(mustache.to_html(template, itemToDisplay[0].view))
+      res.write(mustache.to_html(template, data))
       res.end()
     })
   } else {
