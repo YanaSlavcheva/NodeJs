@@ -9,8 +9,8 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  var template = 'images-all.html'
-  var data = {images: imagesInfo}
+  let template = 'images-all.html'
+  let data = {images: imagesInfo}
 
   if (req.pathname === '/images/all') {
     fs.readFile(template, function (err, template) {

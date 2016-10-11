@@ -13,7 +13,7 @@ module.exports = function (req, res) {
       fs.readFile('./add-image.html', (err, data) => {
         // TODO: manage the err as proper res
         if (err) console.log(err)
-        
+
         res.writeHead(200, {
           'Content-Type': 'text/html'
         })
