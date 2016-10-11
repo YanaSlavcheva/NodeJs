@@ -4,7 +4,7 @@ body {
 }
 
     body h1 {
-        color: orange;
+        color: lightpink;
     }
 
     body nav {
@@ -25,10 +25,11 @@ body {
                 }
 
                 body nav ul li a {
-                    background: orange;
+                    background: lightgreen;
                     padding: 20px;
                 }
 
                     body nav ul li a:hover {
-                        background: yellow;
+                        background: lightpink;
+                        cursor: pointer;
                     }
