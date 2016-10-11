@@ -1,3 +1,25 @@
-.big-text {
-    font-size: 72px;
+body {
+    font-family: Arial;
 }
+
+h1 {
+    color: orange;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+    nav ul li {
+        display: inline-block;
+    }
+
+        nav ul li a {
+            background: orange;
+            border-radius: 10%;
+            padding: 20px;
+        }
+
+            nav ul li a:hover {
+                background: yellow;
+            }

@@ -8,7 +8,7 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  if (req.pathname === '/add-image-info') {
+  if (req.pathname === '/images/add') {
     if (req.method === 'GET') {
       fs.readFile('./add-image.html', (err, data) => {
         // TODO: manage the err as proper res
