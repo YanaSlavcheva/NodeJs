@@ -1,25 +1,34 @@
 body {
     font-family: Arial;
+    padding: 20px;
 }
 
-h1 {
-    color: orange;
-}
-
-nav ul {
-    list-style-type: none;
-}
-
-    nav ul li {
-        display: inline-block;
+    body h1 {
+        color: orange;
     }
 
-        nav ul li a {
-            background: orange;
-            border-radius: 10%;
-            padding: 20px;
+    body nav {
+        margin-bottom: 60px;
+    }
+
+        body nav ul {
+            list-style-type: none;
         }
 
-            nav ul li a:hover {
-                background: yellow;
+            body nav ul li {
+                display: inline-block;
+                margin-right: 20px;
             }
+
+                body nav ul li:last-child {
+                    margin-right: none;
+                }
+
+                body nav ul li a {
+                    background: orange;
+                    padding: 20px;
+                }
+
+                    body nav ul li a:hover {
+                        background: yellow;
+                    }
