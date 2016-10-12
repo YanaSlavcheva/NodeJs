@@ -2,7 +2,11 @@ let url = require('url')
 let fs = require('fs')
 let qs = require('querystring')
 
+let mustache = require('./../node_modules/mustache/mustache')
+
 let imagesInfo = require('./../my-modules/images-info-container.js')
+let headerModule = require('./../my-modules/header')
+let stylesSection = require('./../my-modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -10,14 +14,18 @@ module.exports = function (req, res) {
 
   if (req.pathname === '/images/add') {
     if (req.method === 'GET') {
-      fs.readFile('./add-image.html', (err, data) => {
-        // TODO: manage the err as proper res
-        if (err) console.log(err)
+      let template = './add-image.html'
+      let data = []
+      let partials = { header: headerModule, styles: stylesSection }
+
+      fs.readFile(template, function (err, template) {
+        if (err) throw err
 
         res.writeHead(200, {
           'Content-Type': 'text/html'
         })
-        res.write(data)
+        template = template.toString()
+        res.write(mustache.to_html(template, data, partials))
         res.end()
       })
     } else if (req.method === 'POST') {
