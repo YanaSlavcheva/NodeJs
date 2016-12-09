@@ -64,7 +64,8 @@ module.exports = function (req, res) {
             description: postData['description'],
             url: postData['url'],
             createdOn: new Date(),
-            isDeleted: false
+            isDeleted: false,
+            views: 0
           })
 
           blogPostsInfo.push(myBlogPostInfo)

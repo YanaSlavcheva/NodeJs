@@ -23,7 +23,11 @@ module.exports = function (req, res) {
     })
 
     if (result.length > 0) {
-      let data = result[0]
+      let blogPost = result[0]
+      // let viewsOfBlogPostBeforeCurrent = blogPost.views
+      blogPost.views = blogPost.views + 1
+
+      let data = blogPost
       let partials = { header: headerModule, styles: stylesSection }
 
       console.log(data)
