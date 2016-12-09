@@ -4,6 +4,8 @@ let fs = require('fs')
 let mustache = require('./../node_modules/mustache/mustache')
 
 let imagesInfo = require('./../my-modules/images-info-container.js')
+let headerModule = require('./../my-modules/header')
+let stylesSection = require('./../my-modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -22,6 +24,8 @@ module.exports = function (req, res) {
 
     if (result.length > 0) {
       let data = result[0]
+      let partials = { header: headerModule, styles: stylesSection }
+
       console.log(data)
       console.log(template)
 
@@ -32,7 +36,7 @@ module.exports = function (req, res) {
           'Content-Type': 'text/html'
         })
         template = template.toString()
-        res.write(mustache.to_html(template, data))
+        res.write(mustache.to_html(template, data, partials))
         res.end()
       })
     } else {
