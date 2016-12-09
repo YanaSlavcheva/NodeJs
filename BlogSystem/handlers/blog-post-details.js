@@ -29,6 +29,12 @@ module.exports = function (req, res) {
         let blogPost = result[0]
         blogPost.views = blogPost.views + 1
 
+        let commentsForBlogPost = commentsInfo.filter(function (obj) {
+          return obj.blogPostId === blogPost.id
+        })
+
+        blogPost.comments = commentsForBlogPost
+
         let data = blogPost
         let partials = { header: headerModule, styles: stylesSection }
 

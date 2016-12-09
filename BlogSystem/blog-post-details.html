@@ -14,6 +14,9 @@
     <div>
         description: {{description}}
     </div>
+    <img src="{{url}}" alt="{{title}}">
+
+    <h2>Add Comment</h2>
     <form method="POST" name="manage-delete">
         <div>
             <label for="username">Username</label>
@@ -26,7 +29,16 @@
         <input type="hidden" name="blogPostId" value="{{id}}">
         <input type="submit" value="Add Comment">
     </form>
-    <img src="{{url}}" alt="{{title}}">
+
+    <h2>Comments</h2>
+    <ul>
+        {{#comments}}
+        <li>
+            <h3>{{username}}</h3>
+            <p>{{commentText}}</p>
+        </li>
+        {{/comments}}
+    </ul>
 </body>
 
 </html>

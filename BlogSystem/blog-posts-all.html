@@ -10,11 +10,13 @@
 <body>
     {{>header}}
     <h1>All Blog posts</h1>
-    <ul>{{#blogPosts}}
+    <ul>
+        {{#blogPosts}}
         <li>
             <a href="/details/{{id}}">{{title}}</a>
         </li>
-        {{/blogPosts}}</ul>
+        {{/blogPosts}}
+    </ul>
 </body>
 
 </html>
