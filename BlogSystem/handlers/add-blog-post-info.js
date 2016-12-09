@@ -1,6 +1,7 @@
 let url = require('url')
 let fs = require('fs')
 let qs = require('querystring')
+let multiparty = require('multiparty')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
@@ -29,61 +30,82 @@ module.exports = function (req, res) {
         res.end()
       })
     } else if (req.method === 'POST') {
-      let body = ''
+      let numberOfBlogPostsSavedByNow = Object.keys(blogPostsInfo).length
+      let numberOfOurPost = numberOfBlogPostsSavedByNow + 1
 
-      req.on('data', (data) => {
-        body += data
+      let myBlogPostInfo = ({
+        id: numberOfOurPost,
+        createdOn: new Date(),
+        isDeleted: false,
+        views: 0
+      })
 
-        if (body.length > 1e6) {
-          req.connection.destroy()
+      let returnData = []
+
+      let form = new multiparty.Form()
+      form.parse(req)
+
+      form.on('part', (part) => {
+        if (part.filename) {
+          let body = ''
+
+          part.setEncoding('binary')
+          part.on('data', (data) => { body += data })
+          part.on('end', () => {
+            fs.writeFile(part.filename, body, err => {
+              if (err) throw err
+            })
+          })
+        } else {
+          let body = ''
+          let dict = []
+          let partName = '' + part.name
+
+          part.on('data', data => {
+            body += data
+
+            if (body.length > 1e6) {
+              req.connection.destroy()
+            }
+          })
+
+          part.on('end', () => {
+            dict[partName] = body
+
+            // if (!postData['title'] || !postData['description']) {
+            //   res.writeHead(200, {
+            //     Status: 'WARNING',
+            //     Code: 'WARNING-CODE'
+            //   })
+
+            //   // TODO: return some html here
+            //   res.write('Please, fill all the data')
+            //   res.end()
+            // } else {
+
+            myBlogPostInfo[partName] = dict[partName]
+            // }
+          })
         }
       })
 
-      req.on('end', () => {
-        let postData = qs.parse(body)
+      blogPostsInfo.push(myBlogPostInfo)
+      console.log(blogPostsInfo)
 
-        if (!postData['title'] || !postData['description'] || !postData['url']) {
-          res.writeHead(200, {
-            Status: 'WARNING',
-            Code: 'WARNING-CODE'
-          })
+      returnData = myBlogPostInfo
 
-          // TODO: return some html here
-          res.write('Please, fill all the data')
-          res.end()
-        } else {
-          let template = './blog-post-added.html'
-          let data = []
-          let partials = { header: headerModule, styles: stylesSection }
+      let template = './blog-post-added.html'
+      let partials = { header: headerModule, styles: stylesSection }
 
-          let numberOfBlogPostsSavedByNow = Object.keys(blogPostsInfo).length
+      fs.readFile(template, function (err, template) {
+        if (err) throw err
 
-          let myBlogPostInfo = ({
-            id: numberOfBlogPostsSavedByNow + 1,
-            title: postData['title'],
-            description: postData['description'],
-            url: postData['url'],
-            createdOn: new Date(),
-            isDeleted: false,
-            views: 0
-          })
-
-          blogPostsInfo.push(myBlogPostInfo)
-          console.log(blogPostsInfo)
-
-          data = myBlogPostInfo
-
-          fs.readFile(template, function (err, template) {
-            if (err) throw err
-
-            res.writeHead(200, {
-              'Content-Type': 'text/html'
-            })
-            template = template.toString()
-            res.write(mustache.to_html(template, data, partials))
-            res.end()
-          })
-        }
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        })
+        template = template.toString()
+        res.write(mustache.to_html(template, returnData, partials))
+        res.end()
       })
     }
   } else {
