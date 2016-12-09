@@ -50,6 +50,10 @@ module.exports = function (req, res) {
           res.write('Please, fill some data first')
           res.end()
         } else {
+          let template = './image-added.html'
+          let data = []
+          let partials = { header: headerModule, styles: stylesSection }
+
           var numberOfImagesSavedByNow = Object.keys(imagesInfo).length
 
           let myImageInfo = ({
@@ -60,12 +64,23 @@ module.exports = function (req, res) {
 
           imagesInfo.push(myImageInfo)
 
+          data = myImageInfo
           console.log(imagesInfo)
 
           // TODO: redirect or show some proper html
-          res.writeHead(200)
-          res.write('Image info added successfully')
-          res.end()
+          // res.writeHead(200)
+          // res.write('Image info added successfully')
+          // res.end()
+          fs.readFile(template, function (err, template) {
+            if (err) throw err
+
+            res.writeHead(200, {
+              'Content-Type': 'text/html'
+            })
+            template = template.toString()
+            res.write(mustache.to_html(template, data, partials))
+            res.end()
+          })
         }
       })
     }
