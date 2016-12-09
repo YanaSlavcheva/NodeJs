@@ -1,6 +1,5 @@
 let url = require('url')
 let fs = require('fs')
-let qs = require('querystring')
 let multiparty = require('multiparty')
 
 let mustache = require('./../node_modules/mustache/mustache')
@@ -48,13 +47,16 @@ module.exports = function (req, res) {
       form.on('part', (part) => {
         if (part.filename) {
           let body = ''
+          let pathOfFileToSaveToDisk = '' + numberOfOurPost + part.filename
 
           part.setEncoding('binary')
           part.on('data', (data) => { body += data })
           part.on('end', () => {
-            fs.writeFile(part.filename, body, err => {
+            fs.writeFile(pathOfFileToSaveToDisk, body, err => {
               if (err) throw err
             })
+
+            myBlogPostInfo.imagePath = pathOfFileToSaveToDisk
           })
         } else {
           let body = ''
@@ -72,40 +74,42 @@ module.exports = function (req, res) {
           part.on('end', () => {
             dict[partName] = body
 
-            // if (!postData['title'] || !postData['description']) {
-            //   res.writeHead(200, {
-            //     Status: 'WARNING',
-            //     Code: 'WARNING-CODE'
-            //   })
+            // TODO: close the form properly here
+            if (body === '') {
+              res.writeHead(200, {
+                Status: 'WARNING',
+                Code: 'WARNING-CODE'
+              })
 
-            //   // TODO: return some html here
-            //   res.write('Please, fill all the data')
-            //   res.end()
-            // } else {
-
-            myBlogPostInfo[partName] = dict[partName]
-            // }
+              // TODO: return some html here
+              res.write('Please, fill all the data')
+              res.end()
+            } else {
+              myBlogPostInfo[partName] = dict[partName]
+            }
           })
         }
       })
 
-      blogPostsInfo.push(myBlogPostInfo)
-      console.log(blogPostsInfo)
+      form.on('close', () => {
+        blogPostsInfo.push(myBlogPostInfo)
+        console.log(blogPostsInfo)
 
-      returnData = myBlogPostInfo
+        returnData = myBlogPostInfo
 
-      let template = './blog-post-added.html'
-      let partials = { header: headerModule, styles: stylesSection }
+        let template = './blog-post-added.html'
+        let partials = { header: headerModule, styles: stylesSection }
 
-      fs.readFile(template, function (err, template) {
-        if (err) throw err
+        fs.readFile(template, function (err, template) {
+          if (err) throw err
 
-        res.writeHead(200, {
-          'Content-Type': 'text/html'
+          res.writeHead(200, {
+            'Content-Type': 'text/html'
+          })
+          template = template.toString()
+          res.write(mustache.to_html(template, returnData, partials))
+          res.end()
         })
-        template = template.toString()
-        res.write(mustache.to_html(template, returnData, partials))
-        res.end()
       })
     }
   } else {
