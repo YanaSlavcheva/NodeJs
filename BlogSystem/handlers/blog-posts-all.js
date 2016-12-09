@@ -11,8 +11,16 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
+  let blogPostsNotDeleted = blogPostsInfo.filter(function (obj) {
+    return obj.isDeleted === false
+  })
+
+  blogPostsNotDeleted.sort(function (a, b) {
+    return new Date(a.createdOn) - new Date(b.createdOn)
+  })
+
   let template = 'blog-posts-all.html'
-  let data = { blogPosts: blogPostsInfo }
+  let data = { blogPosts: blogPostsNotDeleted }
   let partials = { header: headerModule, styles: stylesSection }
 
   if (req.pathname === '/all') {

@@ -56,13 +56,15 @@ module.exports = function (req, res) {
           let data = []
           let partials = { header: headerModule, styles: stylesSection }
 
-          var numberOfBlogPostsSavedByNow = Object.keys(blogPostsInfo).length
+          let numberOfBlogPostsSavedByNow = Object.keys(blogPostsInfo).length
 
           let myBlogPostInfo = ({
             id: numberOfBlogPostsSavedByNow + 1,
             title: postData['title'],
             description: postData['description'],
-            url: postData['url']
+            url: postData['url'],
+            createdOn: new Date(),
+            isDeleted: false
           })
 
           blogPostsInfo.push(myBlogPostInfo)
