@@ -3,7 +3,7 @@ let fs = require('fs')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let imagesInfo = require('./../my-modules/blog-posts-info-container.js')
+let blogPostsInfo = require('./../my-modules/blog-posts-info-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -14,10 +14,10 @@ module.exports = function (req, res) {
   if (req.pathname.startsWith('/details')) {
     let template = 'blog-post-details.html'
     let splitPathname = req.pathname.split('/')
-    let imageId = splitPathname[splitPathname.length - 1]
+    let blogPostId = splitPathname[splitPathname.length - 1]
 
-    var result = imagesInfo.filter(function (obj) {
-      if (obj.id === parseInt(imageId)) {
+    var result = blogPostsInfo.filter(function (obj) {
+      if (obj.id === parseInt(blogPostId)) {
         return obj
       }
     })

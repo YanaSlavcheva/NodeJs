@@ -3,18 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>All images info</title>
+    <title>All blog posts info</title>
     {{>styles}}
 </head>
 
 <body>
     {{>header}}
-    <h1>All Images</h1>
-    <ul>{{#images}}
+    <h1>All Blog posts</h1>
+    <ul>{{#blogPosts}}
         <li>
-            <a href="/details/{{id}}">{{name}}</a>
+            <a href="/details/{{id}}">{{title}}</a>
         </li>
-        {{/images}}</ul>
+        {{/blogPosts}}</ul>
 </body>
 
 </html>

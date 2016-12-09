@@ -3,13 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Image details</title>
+    <title>Blog post details</title>
     {{>styles}}
 </head>
 
 <body>
     {{>header}}
-    <h1>{{name}}</h1>
+    <h1>{{title}}</h1>
+    <div>
+        {{description}}
+    </div>
     <img src="{{url}}" alt="{{name}}">
 </body>
 

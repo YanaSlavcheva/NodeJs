@@ -2,23 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add new image</title>
+    <title>Add new blog post</title>
     {{>styles}}
 </head>
 <body>
     {{>header}}
-    <h1>Add new image</h1>
+    <h1>Add new blog post</h1>
     <form method="POST">
         <div>
-            <label for="name">Fill image name</label>
-            <input type="text" id="name" name="name"/>
+            <label for="name">Title</label>
+            <input type="text" id="title" name="title"/>
         </div>
         <div>
-            <label for="url">Fill image url</label>
+            <label for="name">Description</label>
+            <input type="text" id="description" name="description"/>
+        </div>
+        <div>
+            <label for="url">Image url</label>
             <input type="text" name="url" value="url"/>
         </div>
 
-        <input type="submit" value="Add image info"/>
+        <input type="submit" value="Add blog post info"/>
     </form>
 </body>
 </html>

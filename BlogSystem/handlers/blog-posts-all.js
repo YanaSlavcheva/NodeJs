@@ -3,7 +3,7 @@ let fs = require('fs')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let imagesInfo = require('./../my-modules/blog-posts-info-container.js')
+let blogPostsInfo = require('./../my-modules/blog-posts-info-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -12,7 +12,7 @@ module.exports = function (req, res) {
   req.pathname = req.pathname || url.parse(req.url).pathname
 
   let template = 'blog-posts-all.html'
-  let data = { images: imagesInfo }
+  let data = { blogPosts: blogPostsInfo }
   let partials = { header: headerModule, styles: stylesSection }
 
   if (req.pathname === '/all') {
