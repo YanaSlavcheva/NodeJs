@@ -70,43 +70,33 @@ module.exports = function (req, res) {
       req.on('end', () => {
         let postData = qs.parse(body)
 
-        if (!postData['username'] || !postData['commentText']) {
+        if (!postData['id']) {
           res.writeHead(200, {
             Status: 'WARNING',
             Code: 'WARNING-CODE'
           })
-          res.write('Please, fill all the data')
+          res.write('Sorry, cannot delete blog post now')
           res.end()
         } else {
-          let template = './comment-added.html'
-          let data = []
-          let partials = { header: headerModule, styles: stylesSection }
-
-          let numberOfCommentsSavedByNow = Object.keys(commentsInfo).length
-
-          let myCommentInfo = ({
-            id: numberOfCommentsSavedByNow + 1,
-            username: postData['username'],
-            commentText: postData['commentText'],
-            createdOn: new Date(),
-            blogPostId: postData['blogPostId']
+          let blogPostId = parseInt(postData['id'])
+          let currentBlogPost = blogPostsInfo.filter(function (obj) {
+            return obj.id === blogPostId
           })
 
-          commentsInfo.push(myCommentInfo)
-          console.log(commentsInfo)
+          if (currentBlogPost) {
+            if (currentBlogPost[0]['isDeleted'] === true) {
+              currentBlogPost[0]['isDeleted'] = false
+            } else {
+              currentBlogPost[0]['isDeleted'] = true
+            }
+          }
 
-          data = myCommentInfo
+          console.log(currentBlogPost[0])
 
-          fs.readFile(template, function (err, template) {
-            if (err) throw err
-
-            res.writeHead(200, {
-              'Content-Type': 'text/html'
-            })
-            template = template.toString()
-            res.write(mustache.to_html(template, data, partials))
-            res.end()
+          res.writeHead(302, {
+            'Location': '/details/' + currentBlogPost[0]['id']
           })
+          res.end()
         }
       })
     }
