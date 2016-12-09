@@ -35,6 +35,12 @@ module.exports = function (req, res) {
 
         blogPost.comments = commentsForBlogPost
 
+        if (blogPost.isDeleted === true) {
+          blogPost.deleteButtonText = 'Undelete'
+        } else {
+          blogPost.deleteButtonText = 'Delete'
+        }
+
         let data = blogPost
         let partials = { header: headerModule, styles: stylesSection }
 
@@ -84,17 +90,17 @@ module.exports = function (req, res) {
           })
 
           if (currentBlogPost) {
-            if (currentBlogPost[0]['isDeleted'] === true) {
-              currentBlogPost[0]['isDeleted'] = false
+            if (currentBlogPost[0].isDeleted === true) {
+              currentBlogPost[0].isDeleted = false
             } else {
-              currentBlogPost[0]['isDeleted'] = true
+              currentBlogPost[0].isDeleted = true
             }
           }
 
           console.log(currentBlogPost[0])
 
           res.writeHead(302, {
-            'Location': '/details/' + currentBlogPost[0]['id']
+            'Location': '/details/' + currentBlogPost[0].id
           })
           res.end()
         }
