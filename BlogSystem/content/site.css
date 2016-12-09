@@ -1,0 +1,35 @@
+body {
+    font-family: Arial;
+    padding: 20px;
+}
+
+    body h1 {
+        color: lightpink;
+    }
+
+    body nav {
+        margin-bottom: 60px;
+    }
+
+        body nav ul {
+            list-style-type: none;
+        }
+
+            body nav ul li {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+                body nav ul li:last-child {
+                    margin-right: none;
+                }
+
+                body nav ul li a {
+                    background: lightgreen;
+                    padding: 20px;
+                }
+
+                    body nav ul li a:hover {
+                        background: lightpink;
+                        cursor: pointer;
+                    }

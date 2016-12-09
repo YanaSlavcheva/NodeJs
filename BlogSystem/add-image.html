@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new image</title>
+    {{>styles}}
+</head>
+<body>
+    {{>header}}
+    <h1>Add new image</h1>
+    <form method="POST">
+        <div>
+            <label for="name">Fill image name</label>
+            <input type="text" id="name" name="name"/>
+        </div>
+        <div>
+            <label for="url">Fill image url</label>
+            <input type="text" name="url" value="url"/>
+        </div>
+
+        <input type="submit" value="Add image info"/>
+    </form>
+</body>
+</html>
