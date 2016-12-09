@@ -11,6 +11,18 @@
     {{>header}}
     <h1>{{title}}</h1>
     <p>views: {{views}}</p>
+    <form method="POST" name="manage-delete">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"/>
+        </div>
+        <div>
+            <label for="commentText">Comment text</label>
+            <input type="text" id="commentText" name="commentText"/>
+        </div>
+        <input type="hidden" name="blogPostId" value="{{id}}">
+        <input type="submit" value="Delete">
+    </form>
     <div>
         {{description}}
     </div>
