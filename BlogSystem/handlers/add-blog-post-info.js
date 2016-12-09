@@ -4,7 +4,7 @@ let qs = require('querystring')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let imagesInfo = require('./../my-modules/images-info-container.js')
+let imagesInfo = require('./../my-modules/blog-posts-info-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -12,9 +12,9 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  if (req.pathname === '/images/add') {
+  if (req.pathname === '/create') {
     if (req.method === 'GET') {
-      let template = './add-image.html'
+      let template = './add-blog-post.html'
       let data = []
       let partials = { header: headerModule, styles: stylesSection }
 
@@ -50,7 +50,7 @@ module.exports = function (req, res) {
           res.write('Please, fill some data first')
           res.end()
         } else {
-          let template = './image-added.html'
+          let template = './blog-post-added.html'
           let data = []
           let partials = { header: headerModule, styles: stylesSection }
 

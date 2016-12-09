@@ -3,7 +3,7 @@ let fs = require('fs')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let imagesInfo = require('./../my-modules/images-info-container.js')
+let imagesInfo = require('./../my-modules/blog-posts-info-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -11,8 +11,8 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  if (req.pathname.startsWith('/images/details')) {
-    let template = 'image-details.html'
+  if (req.pathname.startsWith('/details')) {
+    let template = 'blog-post-details.html'
     let splitPathname = req.pathname.split('/')
     let imageId = splitPathname[splitPathname.length - 1]
 
@@ -41,7 +41,7 @@ module.exports = function (req, res) {
       })
     } else {
       res.writeHead(404)
-      res.write('No such image')
+      res.write('No such blog post')
       res.end()
     }
   } else {
