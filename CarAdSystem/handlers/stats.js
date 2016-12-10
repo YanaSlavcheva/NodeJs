@@ -14,7 +14,7 @@ module.exports = function (req, res) {
   req.pathname = req.pathname || url.parse(req.url).pathname
 
   if (req.pathname === '/stats') {
-    if (req.headers['My-Authorization'] === 'Admin') {
+    if (req.headers['my-authorization'] === 'Admin') {
       let data = { cars: cars }
       data.cars.forEach(function (car) {
         let commentsForCar = comments.filter(function (obj) {

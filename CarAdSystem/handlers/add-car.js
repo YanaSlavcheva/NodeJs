@@ -51,12 +51,12 @@ module.exports = function (req, res) {
           let pathOfFileToSaveToDisk = '/content/images/' + numberOfMyCar + part.filename
           myCar.imagePath = pathOfFileToSaveToDisk
 
-          part.setEncoding('binary')
+          // part.setEncoding('binary')
           part.on('data', (data) => {
             file += data
           })
           part.on('end', () => {
-            fs.writeFile('.' + pathOfFileToSaveToDisk, file, err => {
+            fs.writeFile('.' + pathOfFileToSaveToDisk, file, 'UTF-8', err => {
               if (err) throw err
             })
 
