@@ -120,3 +120,8 @@ body {
         .comment-container p {
             margin-left: 30px;
         }
+
+    .note {
+        font-style: italic;
+        font-size: 12px;
+    }

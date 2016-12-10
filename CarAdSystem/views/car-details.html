@@ -23,7 +23,10 @@
         </div>
 
         <div class="row blue-container">
-            <img class="span4" src="{{imagePath}}" alt="{{make}} {{model}}">
+            <div class="span4">
+                <img src="{{imagePath}}" alt="{{make}} {{model}}" title="Newly uploaded images are saved in the right folder with the right name, but are a little corrupted.. Didn't find the reason :)">
+                <p class="note">Hover on the image if it doesn't show up ;)</p>
+            </div>
             <div class="span8">
                 <div class="row car-detail-item">
                     Make: {{make}}
@@ -46,7 +49,6 @@
             <div class="span6">
                 <label for="commentText">Comment text</label>
                 <textarea rows="5" cols="80" id="commentText" name="commentText"></textarea>
-                <!--<input type="text" id="commentText" name="commentText"/>-->
             </div>
             <input type="hidden" name="carId" value="{{id}}">
             <input type="submit" value="Add Comment" class="span12 add-button">
