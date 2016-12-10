@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Cars</title>
+    {{>styles}}
+</head>
+
+<body>
+    {{>header}}
+    <h1>All Cars</h1>
+    <ul>
+        {{#cars}}
+        <li>
+            <a href="/details/{{id}}">
+                <p>Make: {{make}}</p>
+                <p>Model: {{model}}</p>
+                <p>Price: {{price}}</p>
+                <p>Created On: {{createdOn}}</p>
+                <p>Views: {{views}}</p>
+            </a>
+        </li>
+        {{/cars}}
+    </ul>
+</body>
+
+</html>

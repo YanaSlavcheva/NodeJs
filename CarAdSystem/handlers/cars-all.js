@@ -3,7 +3,7 @@ let fs = require('fs')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let blogPostsInfo = require('./../my-modules/cars-container.js')
+let cars = require('./../my-modules/cars-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -11,16 +11,16 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  let blogPostsNotDeleted = blogPostsInfo.filter(function (obj) {
+  let carsNotDeleted = cars.filter(function (obj) {
     return obj.isDeleted === false
   })
 
-  blogPostsNotDeleted.sort(function (a, b) {
+  carsNotDeleted.sort(function (a, b) {
     return new Date(a.createdOn) - new Date(b.createdOn)
   })
 
-  let template = 'blog-posts-all.html'
-  let data = { blogPosts: blogPostsNotDeleted }
+  let template = 'cars-all.html'
+  let data = { cars: carsNotDeleted }
   let partials = { header: headerModule, styles: stylesSection }
 
   if (req.pathname === '/all') {
