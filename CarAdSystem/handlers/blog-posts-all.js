@@ -3,7 +3,7 @@ let fs = require('fs')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let blogPostsInfo = require('./../my-modules/blog-posts-info-container.js')
+let blogPostsInfo = require('./../my-modules/cars-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 

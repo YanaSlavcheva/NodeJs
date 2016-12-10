@@ -4,7 +4,7 @@ let qs = require('querystring')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let blogPostsInfo = require('./../my-modules/blog-posts-info-container.js')
+let blogPostsInfo = require('./../my-modules/cars-container.js')
 let commentsInfo = require('./../my-modules/comments-info-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')

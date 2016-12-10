@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Car</title>
+    {{>styles}}
+</head>
+<body>
+    {{>header}}
+    <h1>Add Car</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="make">Make</label>
+            <input type="text" id="make" name="make"/>
+        </div>
+        <div>
+            <label for="model">Model</label>
+            <input type="text" id="model" name="model"/>
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price"/>
+        </div>
+        <div>
+            <label for="image">Image</label>
+            <input type="file" name="image" value="image"/>
+        </div>
+
+        <input type="submit" value="Add Car"/>
+    </form>
+</body>
+</html>

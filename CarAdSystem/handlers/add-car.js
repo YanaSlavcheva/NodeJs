@@ -4,7 +4,7 @@ let multiparty = require('multiparty')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let blogPostsInfo = require('./../my-modules/blog-posts-info-container.js')
+let cars = require('./../my-modules/cars-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -14,7 +14,7 @@ module.exports = function (req, res) {
 
   if (req.pathname === '/create') {
     if (req.method === 'GET') {
-      let template = './add-blog-post.html'
+      let template = './add-car.html'
       let data = []
       let partials = { header: headerModule, styles: stylesSection }
 
@@ -29,11 +29,11 @@ module.exports = function (req, res) {
         res.end()
       })
     } else if (req.method === 'POST') {
-      let numberOfBlogPostsSavedByNow = Object.keys(blogPostsInfo).length
-      let numberOfOurPost = numberOfBlogPostsSavedByNow + 1
+      let numberOfCarsSavedByNow = Object.keys(cars).length
+      let numberOfOurCar = numberOfCarsSavedByNow + 1
 
-      let myBlogPostInfo = ({
-        id: numberOfOurPost,
+      let myCar = ({
+        id: numberOfOurCar,
         createdOn: new Date(),
         isDeleted: false,
         views: 0
@@ -47,7 +47,7 @@ module.exports = function (req, res) {
       form.on('part', (part) => {
         if (part.filename) {
           let body = ''
-          let pathOfFileToSaveToDisk = '' + numberOfOurPost + part.filename
+          let pathOfFileToSaveToDisk = '' + numberOfOurCar + part.filename
 
           part.setEncoding('binary')
           part.on('data', (data) => { body += data })
@@ -56,7 +56,7 @@ module.exports = function (req, res) {
               if (err) throw err
             })
 
-            myBlogPostInfo.imagePath = pathOfFileToSaveToDisk
+            myCar.imagePath = pathOfFileToSaveToDisk
           })
         } else {
           let body = ''
@@ -85,19 +85,19 @@ module.exports = function (req, res) {
               res.write('Please, fill all the data')
               res.end()
             } else {
-              myBlogPostInfo[partName] = dict[partName]
+              myCar[partName] = dict[partName]
             }
           })
         }
       })
 
       form.on('close', () => {
-        blogPostsInfo.push(myBlogPostInfo)
-        console.log(blogPostsInfo)
+        cars.push(myCar)
+        console.log(cars)
 
-        returnData = myBlogPostInfo
+        returnData = myCar
 
-        let template = './blog-post-added.html'
+        let template = './car-added.html'
         let partials = { header: headerModule, styles: stylesSection }
 
         fs.readFile(template, function (err, template) {
