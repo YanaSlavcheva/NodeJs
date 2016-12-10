@@ -9,20 +9,22 @@
 
 <body>
     {{>header}}
-    <h2 class="text-center special-title">All Cars</h2>
-    <ul class="row">
-        {{#cars}}
-        <li class="span4 car-item">
-            <a href="/details/{{id}}">
-                <p>Make: {{make}}</p>
-                <p>Model: {{model}}</p>
-                <p>Price: {{price}}</p>
-                <p>Created On: {{createdOnToDisplay}}</p>
-                <p>Views: {{views}}</p>
-            </a>
-        </li>
-        {{/cars}}
-    </ul>
+    <div class="wrapper">
+        <h2 class="text-center special-title">All Cars</h2>
+        <ul class="row">
+            {{#cars}}
+            <li class="span4 car-item">
+                <a href="/details/{{id}}">
+                    <p>Make: {{make}}</p>
+                    <p>Model: {{model}}</p>
+                    <p>Price: {{price}}</p>
+                    <p>Created On: {{createdOnToDisplay}}</p>
+                    <p>Views: {{views}}</p>
+                </a>
+            </li>
+            {{/cars}}
+        </ul>
+    </div>
     {{>scripts}}
 </body>
 

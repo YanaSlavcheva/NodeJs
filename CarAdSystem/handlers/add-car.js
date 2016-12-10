@@ -51,7 +51,6 @@ module.exports = function (req, res) {
           let pathOfFileToSaveToDisk = '/content/images/' + numberOfMyCar + part.filename
           myCar.imagePath = pathOfFileToSaveToDisk
 
-          // TODO: fix saving the images not to be corrupt
           part.setEncoding('binary')
           part.on('data', (data) => {
             file += data
@@ -90,7 +89,6 @@ module.exports = function (req, res) {
             Code: 'WARNING-CODE'
           })
 
-          // TODO: return some html here
           res.write('Please, fill all the data')
           res.end()
         } else {
