@@ -28,6 +28,10 @@ body {
         color: #39515D;
     }
 
+    .buffer-top {
+        margin-top: 50px;
+    }
+
     body ul {
         list-style-type: none;
     }
@@ -63,9 +67,16 @@ body {
                     color: #9DB9CA;
                 }
 
-    body .car-item, body .add-car-form  {
+    body .car-item, body .blue-container {
         background: #39515D;
         color: #9DB9CA;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .orange-container {
+        color: #39515D;
+        background: #AD9748;
         margin: 10px;
         padding: 10px;
     }
@@ -91,5 +102,21 @@ body {
 
     body input[type=submit] {
         line-height: 40px;
+    }
+
+    .add-button {
         margin-top: 30px;
     }
+
+    .car-detail-item {
+        padding: 10px 5px;
+    }
+
+    .comment-container {
+        border-bottom: 1px solid #AD9748;
+        margin-top: 30px;
+    }
+
+        .comment-container p {
+            margin-left: 30px;
+        }
