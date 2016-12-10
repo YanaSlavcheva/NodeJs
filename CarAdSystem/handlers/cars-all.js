@@ -23,6 +23,17 @@ module.exports = function (req, res) {
 
     let template = './views/cars-all.html'
     let data = { cars: carsNotDeleted }
+
+    data.cars.forEach(function (car) {
+      let date = car.createdOn
+      car.createdOnToDisplay = [date.getMonth() + 1,
+               date.getDate(),
+               date.getFullYear()].join('/') + ' ' +
+              [date.getHours(),
+               date.getMinutes(),
+               date.getSeconds()].join(':')
+    })
+
     let partials = { header: headerModule, styles: stylesSection, scripts: scriptsSection }
 
     fs.readFile(template, function (err, template) {

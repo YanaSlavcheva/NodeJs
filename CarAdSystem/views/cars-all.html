@@ -9,15 +9,15 @@
 
 <body>
     {{>header}}
-    <h1>All Cars</h1>
-    <ul>
+    <h2 class="text-center">All Cars</h2>
+    <ul class="row">
         {{#cars}}
-        <li>
+        <li class="span4 car-item">
             <a href="/details/{{id}}">
                 <p>Make: {{make}}</p>
                 <p>Model: {{model}}</p>
                 <p>Price: {{price}}</p>
-                <p>Created On: {{createdOn}}</p>
+                <p>Created On: {{createdOnToDisplay}}</p>
                 <p>Views: {{views}}</p>
             </a>
         </li>

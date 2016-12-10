@@ -67,18 +67,18 @@ body {
                     color: #9DB9CA;
                 }
 
-    body .index-car-item {
+    body .car-item {
         background: #39515D;
         color: #9DB9CA;
         margin: 10px;
         padding: 10px;
     }
 
-        body .index-car-item:hover { 
+        body .car-item:hover { 
             background: #9DB9CA;
         }
 
-        body .index-car-item a:hover {
+        body .car-item a:hover {
             cursor: pointer;
             text-decoration: none;
         }
