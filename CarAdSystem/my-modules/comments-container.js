@@ -6,17 +6,17 @@ date3.setMinutes(date1.getMinutes() + 2)
 
 let commentsList = [{ id: 1,
     username: 'Pesho',
-    commentText: 'ldkjfghlkdfgjn',
+    commentText: 'Mega qkata kola, brat',
     carId: 1,
     createdOn: date1 },
     { id: 2,
     username: 'Gosho',
-    commentText: 'ldkjfghlkdfgjn',
+    commentText: 'Zemi tva BMW',
     carId: 1,
     createdOn: date2 },
     { id: 3,
     username: 'Ivan',
-    commentText: 'ldkjfghlkdfgjn',
+    commentText: 'Da si q kupq li taq, pi4ove, haresva li vi?',
     carId: 2,
     createdOn: date3 }]
 
