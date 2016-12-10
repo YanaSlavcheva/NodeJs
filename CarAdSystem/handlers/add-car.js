@@ -75,43 +75,41 @@ module.exports = function (req, res) {
 
           part.on('end', () => {
             dict[partName] = body
-
-            // TODO: close the form properly here
-            if (body === '') {
-              res.writeHead(200, {
-                Status: 'WARNING',
-                Code: 'WARNING-CODE'
-              })
-
-              // TODO: return some html here
-              res.write('Please, fill all the data')
-              res.end()
-            } else {
-              myCar[partName] = dict[partName]
-            }
+            myCar[partName] = dict[partName]
           })
         }
       })
 
       form.on('close', () => {
-        cars.push(myCar)
-        console.log(cars)
-
-        returnData = myCar
-
-        let template = './car-added.html'
-        let partials = { header: headerModule, styles: stylesSection }
-
-        fs.readFile(template, function (err, template) {
-          if (err) throw err
-
+        if (myCar.make === '' || myCar.model === '' || myCar.price === '' || !myCar.imagePath) {
           res.writeHead(200, {
-            'Content-Type': 'text/html'
+            Status: 'WARNING',
+            Code: 'WARNING-CODE'
           })
-          template = template.toString()
-          res.write(mustache.to_html(template, returnData, partials))
+
+          // TODO: return some html here
+          res.write('Please, fill all the data')
           res.end()
-        })
+        } else {
+          cars.push(myCar)
+          console.log(cars)
+
+          returnData = myCar
+
+          let template = './car-added.html'
+          let partials = { header: headerModule, styles: stylesSection }
+
+          fs.readFile(template, function (err, template) {
+            if (err) throw err
+
+            res.writeHead(200, {
+              'Content-Type': 'text/html'
+            })
+            template = template.toString()
+            res.write(mustache.to_html(template, returnData, partials))
+            res.end()
+          })
+        }
       })
     }
   } else {
