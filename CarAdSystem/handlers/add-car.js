@@ -94,8 +94,6 @@ module.exports = function (req, res) {
           res.end()
         } else {
           cars.push(myCar)
-          console.log(cars)
-
           returnData = myCar
 
           let template = './views/car-added.html'

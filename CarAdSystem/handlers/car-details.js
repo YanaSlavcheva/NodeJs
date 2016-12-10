@@ -29,8 +29,6 @@ module.exports = function (req, res) {
         let car = result[0]
         car.views = car.views + 1
 
-        console.log(comments)
-
         let commentsForCar = comments.filter(function (obj) {
           return obj.carId === car.id
         })
@@ -45,9 +43,6 @@ module.exports = function (req, res) {
         }
 
         let partials = { header: headerModule, styles: stylesSection }
-
-        console.log(data)
-        console.log(template)
 
         fs.readFile(template, function (err, template) {
           if (err) throw err
@@ -98,8 +93,6 @@ module.exports = function (req, res) {
               currentCar[0].isDeleted = true
             }
           }
-
-          console.log(currentCar[0])
 
           res.writeHead(302, {
             'Location': '/details/' + currentCar[0].id

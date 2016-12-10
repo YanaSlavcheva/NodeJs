@@ -52,8 +52,6 @@ module.exports = function (req, res) {
           })
 
           comments.push(myComment)
-          console.log(comments)
-
           data = myComment
 
           fs.readFile(template, function (err, template) {
