@@ -19,10 +19,8 @@ module.exports = function (req, res) {
     return new Date(a.createdOn) - new Date(b.createdOn)
   })
 
-  let carsToDisplay = carsNotDeleted.slice(0, 6)
-
   let template = 'cars-all.html'
-  let data = { cars: carsToDisplay }
+  let data = { cars: carsNotDeleted }
   let partials = { header: headerModule, styles: stylesSection }
 
   if (req.pathname === '/all') {

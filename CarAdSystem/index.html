@@ -13,6 +13,17 @@
     <div>
         You want to sell a car? You want to buy a car? This is the place for you!
     </div>
+    <h2>Check out some cars</h2>
+    <ul>
+        {{#cars}}
+        <li>
+            <a href="/details/{{id}}">
+                <p>{{make}} {{model}}</p>
+                <p>Price: {{price}}</p>
+            </a>
+        </li>
+        {{/cars}}
+    </ul>
 </body>
 
 </html>
