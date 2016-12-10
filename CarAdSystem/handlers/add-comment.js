@@ -7,6 +7,7 @@ let mustache = require('./../node_modules/mustache/mustache')
 let comments = require('./../my_modules/comments-container.js')
 let headerModule = require('./../my_modules/header')
 let stylesSection = require('./../my_modules/styles')
+let scriptsSection = require('./../my_modules/scripts')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -37,7 +38,7 @@ module.exports = function (req, res) {
         } else {
           let template = './views/comment-added.html'
           let data = []
-          let partials = { header: headerModule, styles: stylesSection }
+          let partials = { header: headerModule, styles: stylesSection, scripts: scriptsSection }
 
           let numberOfCommentsSavedByNow = Object.keys(comments).length
           let numberOfMyComment = parseInt(numberOfCommentsSavedByNow + 1)

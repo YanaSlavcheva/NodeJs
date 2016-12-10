@@ -7,6 +7,7 @@ let cars = require('./../my_modules/cars-container.js')
 let comments = require('./../my_modules/comments-container.js')
 let headerModule = require('./../my_modules/header')
 let stylesSection = require('./../my_modules/styles')
+let scriptsSection = require('./../my_modules/scripts')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -24,7 +25,7 @@ module.exports = function (req, res) {
       })
 
       let template = './views/stats.html'
-      let partials = { header: headerModule, styles: stylesSection }
+      let partials = { header: headerModule, styles: stylesSection, scripts: scriptsSection }
 
       fs.readFile(template, function (err, template) {
         if (err) throw err

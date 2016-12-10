@@ -7,6 +7,7 @@ let mustache = require('./../node_modules/mustache/mustache')
 let cars = require('./../my_modules/cars-container.js')
 let headerModule = require('./../my_modules/header')
 let stylesSection = require('./../my_modules/styles')
+let scriptsSection = require('./../my_modules/scripts')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -16,7 +17,7 @@ module.exports = function (req, res) {
     if (req.method === 'GET') {
       let template = './views/add-car.html'
       let data = []
-      let partials = { header: headerModule, styles: stylesSection }
+      let partials = { header: headerModule, styles: stylesSection, scripts: scriptsSection }
 
       fs.readFile(template, function (err, template) {
         if (err) throw err

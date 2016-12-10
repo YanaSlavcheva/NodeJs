@@ -9,10 +9,10 @@
 
 <body>
     {{>header}}
-    <h1>Cars Stats!</h1>
+    <h1>Cars Stats</h1>
     <ul>
         {{#cars}}
-        <li>
+        <li class="span4">
             <a href="/details/{{id}}">
                 <p>{{make}} {{model}}</p>
                 <p>IsDeleted: {{isDeleted}}</p>
@@ -23,6 +23,7 @@
         </li>
         {{/cars}}
     </ul>
+    {{>scripts}}
 </body>
 
 </html>

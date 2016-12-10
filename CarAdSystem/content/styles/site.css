@@ -1,35 +1,89 @@
 body {
     font-family: Arial;
     padding: 20px;
+    color: #39515D;
+    padding: 0;
+    font-size: 15px;
 }
 
-    body h1, h2, h3 {
-        color: lightpink;
+    body .row {
+        margin-left: 0;
     }
 
-    body nav {
-        margin-bottom: 60px;
+    body header {
+        padding-top: 30px;
+        background: #9DB9CA;
+        margin-bottom: 30px;
     }
 
-        body nav ul {
-            list-style-type: none;
+    body .wrapper {
+        padding: 0 50px;
+    }
+
+    body h1 {
+        text-transform: uppercase;
+    }
+
+    body h1, h2, h4 {
+        color: #39515D;
+    }
+
+    body h3 {
+        color: #AD9748;
+    }
+
+    body ul {
+        list-style-type: none;
+    }
+
+    body nav ul li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+        body nav ul li:last-child {
+            margin-right: none;
         }
 
-            body nav ul li {
-                display: inline-block;
-                margin-right: 20px;
+        body nav ul li a {
+            background: #AD9748;
+            padding: 20px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+            body nav ul li a:hover {
+                background: #39515D;
+                cursor: pointer;
+                color: #9DB9CA;
+                text-decoration: none;
             }
 
-                body nav ul li:last-child {
-                    margin-right: none;
+            body nav ul li a:visited {
+                color: #39515D;
+            }
+
+                body nav ul li a:visited:hover {
+                    color: #9DB9CA;
                 }
 
-                body nav ul li a {
-                    background: lightgreen;
-                    padding: 20px;
-                }
+    body .index-car-item {
+        background: #39515D;
+        color: #9DB9CA;
+        margin: 10px;
+        padding: 10px;
+    }
 
-                    body nav ul li a:hover {
-                        background: lightpink;
-                        cursor: pointer;
-                    }
+        body .index-car-item:hover { 
+            background: #9DB9CA;
+        }
+
+        body .index-car-item a:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    body .check-out-cars-title {
+        margin-top: 30px;
+        text-transform: uppercase;
+    }
