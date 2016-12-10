@@ -46,15 +46,17 @@ module.exports = function (req, res) {
 
       form.on('part', (part) => {
         if (part.filename) {
-          let body = ''
+          let file = ''
           let pathOfFileToSaveToDisk = '/content/images/' + numberOfMyCar + part.filename
           myCar.imagePath = pathOfFileToSaveToDisk
 
-          // TODO: fix saving the images as valid image files
+          // TODO: fix saving the images not to be corrupt
           part.setEncoding('binary')
-          part.on('data', (data) => { body += data })
+          part.on('data', (data) => {
+            file += data
+          })
           part.on('end', () => {
-            fs.writeFile('.' + pathOfFileToSaveToDisk, body, err => {
+            fs.writeFile('.' + pathOfFileToSaveToDisk, file, err => {
               if (err) throw err
             })
 
