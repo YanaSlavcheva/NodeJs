@@ -4,9 +4,9 @@ let qs = require('querystring')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let comments = require('./../my-modules/comments-container.js')
-let headerModule = require('./../my-modules/header')
-let stylesSection = require('./../my-modules/styles')
+let comments = require('./../my_modules/comments-container.js')
+let headerModule = require('./../my_modules/header')
+let stylesSection = require('./../my_modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -35,7 +35,7 @@ module.exports = function (req, res) {
           res.write('Please, fill all the data')
           res.end()
         } else {
-          let template = './comment-added.html'
+          let template = './views/comment-added.html'
           let data = []
           let partials = { header: headerModule, styles: stylesSection }
 

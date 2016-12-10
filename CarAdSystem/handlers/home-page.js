@@ -3,9 +3,9 @@ let url = require('url')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let cars = require('./../my-modules/cars-container.js')
-let headerModule = require('./../my-modules/header')
-let stylesSection = require('./../my-modules/styles')
+let cars = require('./../my_modules/cars-container.js')
+let headerModule = require('./../my_modules/header')
+let stylesSection = require('./../my_modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -22,7 +22,7 @@ module.exports = function (req, res) {
 
     let carsToDisplay = carsNotDeleted.slice(0, 6)
 
-    let template = './index.html'
+    let template = './views/index.html'
     let data = { cars: carsToDisplay }
     let partials = {header: headerModule, styles: stylesSection}
 

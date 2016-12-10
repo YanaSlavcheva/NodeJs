@@ -4,10 +4,10 @@ let qs = require('querystring')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let cars = require('./../my-modules/cars-container.js')
-let comments = require('./../my-modules/comments-container.js')
-let headerModule = require('./../my-modules/header')
-let stylesSection = require('./../my-modules/styles')
+let cars = require('./../my_modules/cars-container.js')
+let comments = require('./../my_modules/comments-container.js')
+let headerModule = require('./../my_modules/header')
+let stylesSection = require('./../my_modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -15,7 +15,7 @@ module.exports = function (req, res) {
 
   if (req.pathname.startsWith('/details') && !req.pathname.endsWith('/comment')) {
     if (req.method === 'GET') {
-      let template = 'car-details.html'
+      let template = './views/car-details.html'
       let splitPathname = req.pathname.split('/')
       let carId = splitPathname[splitPathname.length - 1]
 

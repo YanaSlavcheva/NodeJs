@@ -3,9 +3,9 @@ let fs = require('fs')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let cars = require('./../my-modules/cars-container.js')
-let headerModule = require('./../my-modules/header')
-let stylesSection = require('./../my-modules/styles')
+let cars = require('./../my_modules/cars-container.js')
+let headerModule = require('./../my_modules/header')
+let stylesSection = require('./../my_modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -20,7 +20,7 @@ module.exports = function (req, res) {
       return new Date(a.createdOn) - new Date(b.createdOn)
     })
 
-    let template = 'cars-all.html'
+    let template = './views/cars-all.html'
     let data = { cars: carsNotDeleted }
     let partials = { header: headerModule, styles: stylesSection }
 

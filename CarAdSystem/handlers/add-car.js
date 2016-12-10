@@ -4,9 +4,9 @@ let multiparty = require('multiparty')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let cars = require('./../my-modules/cars-container.js')
-let headerModule = require('./../my-modules/header')
-let stylesSection = require('./../my-modules/styles')
+let cars = require('./../my_modules/cars-container.js')
+let headerModule = require('./../my_modules/header')
+let stylesSection = require('./../my_modules/styles')
 
 module.exports = function (req, res) {
   let continueWithNextHandler = false
@@ -14,7 +14,7 @@ module.exports = function (req, res) {
 
   if (req.pathname === '/create') {
     if (req.method === 'GET') {
-      let template = './add-car.html'
+      let template = './views/add-car.html'
       let data = []
       let partials = { header: headerModule, styles: stylesSection }
 
@@ -98,7 +98,7 @@ module.exports = function (req, res) {
 
           returnData = myCar
 
-          let template = './car-added.html'
+          let template = './views/car-added.html'
           let partials = { header: headerModule, styles: stylesSection }
 
           fs.readFile(template, function (err, template) {
