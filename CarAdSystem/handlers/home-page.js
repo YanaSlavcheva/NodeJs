@@ -11,7 +11,7 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  if (req.pathname === '/') {
+  if (req.pathname === '/' || req.pathname === '/index') {
     let carsNotDeleted = cars.filter(function (obj) {
       return obj.isDeleted === false
     })
