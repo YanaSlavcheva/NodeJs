@@ -3,7 +3,7 @@ body {
     padding: 20px;
     color: #39515D;
     padding: 0;
-    font-size: 15px;
+    font-size: 20px;
 }
 
     body .row {
@@ -24,12 +24,8 @@ body {
         text-transform: uppercase;
     }
 
-    body h1, h2, h4 {
+    body h1, h2, h3, h4 {
         color: #39515D;
-    }
-
-    body h3 {
-        color: #AD9748;
     }
 
     body ul {
@@ -67,7 +63,7 @@ body {
                     color: #9DB9CA;
                 }
 
-    body .car-item {
+    body .car-item, body .add-car-form  {
         background: #39515D;
         color: #9DB9CA;
         margin: 10px;
@@ -83,7 +79,17 @@ body {
             text-decoration: none;
         }
 
-    body .check-out-cars-title {
+    body .special-title {
         margin-top: 30px;
         text-transform: uppercase;
+        color: #AD9748;
+    }
+
+    body label, input {
+        font-size: 20px;
+    }
+
+    body input[type=submit] {
+        line-height: 40px;
+        margin-top: 30px;
     }
