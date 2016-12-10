@@ -6,13 +6,13 @@ let date5 = new Date(date1)
 let date6 = new Date(date1)
 let date7 = new Date(date1)
 let date8 = new Date(date1)
-date2.setMinutes(date1.getMinutes() + 1)
-date3.setMinutes(date1.getMinutes() + 2)
-date4.setMinutes(date1.getMinutes() + 3)
-date5.setMinutes(date1.getMinutes() + 4)
-date6.setMinutes(date1.getMinutes() + 5)
-date7.setMinutes(date1.getMinutes() + 6)
-date8.setMinutes(date1.getMinutes() + 7)
+date2.setSeconds(date1.getSeconds() + 1)
+date3.setSeconds(date1.getSeconds() + 2)
+date4.setSeconds(date1.getSeconds() + 3)
+date5.setSeconds(date1.getSeconds() + 4)
+date6.setSeconds(date1.getSeconds() + 5)
+date7.setSeconds(date1.getSeconds() + 6)
+date8.setSeconds(date1.getSeconds() + 7)
 
 let carsList = [{ id: 1,
     make: 'BMW',
@@ -67,7 +67,7 @@ let carsList = [{ id: 1,
     model: 'Big Bang',
     price: '260',
     imagePath: '/content/images/mercedes-big-bang.jpg',
-    createdOn: date6,
+    createdOn: date7,
     isDeleted: false,
     views: 0 },
     { id: 8,
