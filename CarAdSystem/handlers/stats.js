@@ -14,7 +14,7 @@ module.exports = function (req, res) {
   req.pathname = req.pathname || url.parse(req.url).pathname
 
   if (req.pathname === '/stats') {
-    // if (req.headers['My-Authorization'] === 'Admin') {
+    if (req.headers['My-Authorization'] === 'Admin') {
       let data = { cars: cars }
       data.cars.forEach(function (car) {
         let commentsForCar = comments.filter(function (obj) {
@@ -37,11 +37,11 @@ module.exports = function (req, res) {
         res.write(mustache.to_html(template, data, partials))
         res.end()
       })
-    // } else {
-    //   res.writeHead(404)
-    //   res.write('Sorry, none of your business')
-    //   res.end()
-    // }
+    } else {
+      res.writeHead(404)
+      res.write('Sorry, none of your business')
+      res.end()
+    }
   } else {
     continueWithNextHandler = true
   }
