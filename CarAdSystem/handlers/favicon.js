@@ -7,7 +7,7 @@ module.exports = function (req, res) {
 
   if (req.pathname === '/favicon.ico') {
     fs.readFile('./favicon.ico', (err, data) => {
-          // TODO: manage the err as proper res
+      // TODO: manage the err as proper res
       if (err) console.log(err)
       res.writeHead(200)
       res.write(data)

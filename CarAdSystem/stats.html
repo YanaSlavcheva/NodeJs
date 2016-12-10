@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Car Stats</title>
+    {{>styles}}
+</head>
+
+<body>
+    {{>header}}
+    <h1>Cars Stats!</h1>
+    <ul>
+        {{#cars}}
+        <li>
+            <a href="/details/{{id}}">
+                <p>{{make}} {{model}}</p>
+                <p>IsDeleted: {{isDeleted}}</p>
+                <p>Price: {{price}}</p>
+                <p>Views: {{views}}</p>
+                <p>Comments count: {{commentsCount}}</p>
+            </a>
+        </li>
+        {{/cars}}
+    </ul>
+</body>
+
+</html>

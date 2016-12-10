@@ -4,6 +4,7 @@ let fs = require('fs')
 let mustache = require('./../node_modules/mustache/mustache')
 
 let cars = require('./../my-modules/cars-container.js')
+let comments = require('./../my-modules/comments-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -11,17 +12,19 @@ module.exports = function (req, res) {
   let continueWithNextHandler = false
   req.pathname = req.pathname || url.parse(req.url).pathname
 
-  if (req.pathname === '/all') {
-    let carsNotDeleted = cars.filter(function (obj) {
-      return obj.isDeleted === false
+  if (req.pathname === '/stats') {
+      // get comments count
+
+    let data = { cars: cars }
+    data.cars.forEach(function (car) {
+      let commentsForCar = comments.filter(function (obj) {
+        return obj.carId === car.id
+      })
+
+      car.commentsCount = commentsForCar.length
     })
 
-    carsNotDeleted.sort(function (a, b) {
-      return new Date(a.createdOn) - new Date(b.createdOn)
-    })
-
-    let template = 'cars-all.html'
-    let data = { cars: carsNotDeleted }
+    let template = 'stats.html'
     let partials = { header: headerModule, styles: stylesSection }
 
     fs.readFile(template, function (err, template) {
