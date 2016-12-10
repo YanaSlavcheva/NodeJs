@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Blog post details</title>
+    <title>Car Details</title>
     {{>styles}}
 </head>
 
 <body>
     {{>header}}
-    <h1>{{title}}</h1>
+    <h1>{{make}} {{model}}</h1>
     <p>Is Deleted: {{isDeleted}}</p>
 
     <form method="POST">
@@ -19,9 +19,15 @@
 
     <p>views: {{views}}</p>
     <div>
-        description: {{description}}
+        Make: {{make}}
     </div>
-    <img src="{{url}}" alt="{{title}}">
+    <div>
+        Model: {{model}}
+    </div>
+    <div>
+        Price: {{price}}
+    </div>
+    <img src="{{imagePath}}" alt="{{make}} {{model}}">
 
     <h2>Add Comment</h2>
     <form method="POST" action="/details/{{id}}/comment">

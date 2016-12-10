@@ -4,8 +4,8 @@ let qs = require('querystring')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let blogPostsInfo = require('./../my-modules/cars-container.js')
-let commentsInfo = require('./../my-modules/comments-info-container.js')
+let cars = require('./../my-modules/cars-container.js')
+let comments = require('./../my-modules/comments-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -15,33 +15,33 @@ module.exports = function (req, res) {
 
   if (req.pathname.startsWith('/details') && !req.pathname.endsWith('/comment')) {
     if (req.method === 'GET') {
-      let template = 'blog-post-details.html'
+      let template = 'car-details.html'
       let splitPathname = req.pathname.split('/')
-      let blogPostId = splitPathname[splitPathname.length - 1]
+      let carId = splitPathname[splitPathname.length - 1]
 
-      var result = blogPostsInfo.filter(function (obj) {
-        if (obj.id === parseInt(blogPostId)) {
+      var result = cars.filter(function (obj) {
+        if (obj.id === parseInt(carId)) {
           return obj
         }
       })
 
       if (result.length > 0) {
-        let blogPost = result[0]
-        blogPost.views = blogPost.views + 1
+        let car = result[0]
+        car.views = car.views + 1
 
-        let commentsForBlogPost = commentsInfo.filter(function (obj) {
-          return obj.blogPostId === blogPost.id
+        let commentsForCar = comments.filter(function (obj) {
+          return obj.carId === car.id
         })
 
-        blogPost.comments = commentsForBlogPost
+        let data = car
+        data.comments = commentsForCar
 
-        if (blogPost.isDeleted === true) {
-          blogPost.deleteButtonText = 'Undelete'
+        if (car.isDeleted === true) {
+          data.deleteButtonText = 'Undelete'
         } else {
-          blogPost.deleteButtonText = 'Delete'
+          data.deleteButtonText = 'Delete'
         }
 
-        let data = blogPost
         let partials = { header: headerModule, styles: stylesSection }
 
         console.log(data)
@@ -59,7 +59,7 @@ module.exports = function (req, res) {
         })
       } else {
         res.writeHead(404)
-        res.write('No such blog post')
+        res.write('No such car')
         res.end()
       }
     } else if (req.method === 'POST') {
@@ -81,26 +81,26 @@ module.exports = function (req, res) {
             Status: 'WARNING',
             Code: 'WARNING-CODE'
           })
-          res.write('Sorry, cannot delete blog post now')
+          res.write('Sorry, cannot delete car now. Try again later.')
           res.end()
         } else {
-          let blogPostId = parseInt(postData['id'])
-          let currentBlogPost = blogPostsInfo.filter(function (obj) {
-            return obj.id === blogPostId
+          let carId = parseInt(postData['id'])
+          let currentCar = cars.filter(function (obj) {
+            return obj.id === carId
           })
 
-          if (currentBlogPost) {
-            if (currentBlogPost[0].isDeleted === true) {
-              currentBlogPost[0].isDeleted = false
+          if (currentCar) {
+            if (currentCar[0].isDeleted === true) {
+              currentCar[0].isDeleted = false
             } else {
-              currentBlogPost[0].isDeleted = true
+              currentCar[0].isDeleted = true
             }
           }
 
-          console.log(currentBlogPost[0])
+          console.log(currentCar[0])
 
           res.writeHead(302, {
-            'Location': '/details/' + currentBlogPost[0].id
+            'Location': '/details/' + currentCar[0].id
           })
           res.end()
         }

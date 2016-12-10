@@ -3,7 +3,7 @@ let homePage = require('./home-page')
 let addCar = require('./add-car')
 let readFile = require('./read-file')
 let carsAll = require('./cars-all')
-let blogPostDetails = require('./blog-post-details')
+let carDetails = require('./car-details')
 let addCommentInfo = require('./add-comment-info')
 
 module.exports = [
@@ -11,7 +11,7 @@ module.exports = [
   homePage,
   addCar,
   carsAll,
-  blogPostDetails,
+  carDetails,
   addCommentInfo,
   readFile
 ]

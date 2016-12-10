@@ -7,7 +7,9 @@ function checkIfFileExtensionIsAllowed (req) {
     '.css',
     '.js',
     '.html',
-    '.jpg'
+    '.jpg',
+    '.png',
+    '.jpeg'
   ]
 
   for (let fileExtension of allowedFileExtensions) {
@@ -41,6 +43,10 @@ module.exports = function (req, res) {
       contentType = 'application/javascript'
     } else if (req.pathname.endsWith('.jpg')) {
       contentType = 'image/jpeg'
+    } else if (req.pathname.endsWith('.jpeg')) {
+      contentType = 'image/jpeg'
+    } else if (req.pathname.endsWith('.png')) {
+      contentType = 'image/png'
     } else if (req.pathname.endsWith('.html')) {
       contentType = 'text/html'
     }
