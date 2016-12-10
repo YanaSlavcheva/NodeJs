@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blog post details</title>
+    {{>styles}}
+</head>
+
+<body>
+    {{>header}}
+    <h1>{{title}}</h1>
+    <p>Is Deleted: {{isDeleted}}</p>
+
+    <form method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="submit" value="{{deleteButtonText}}">
+    </form>
+
+    <p>views: {{views}}</p>
+    <div>
+        description: {{description}}
+    </div>
+    <img src="{{url}}" alt="{{title}}">
+
+    <h2>Add Comment</h2>
+    <form method="POST" action="/details/{{id}}/comment">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"/>
+        </div>
+        <div>
+            <label for="commentText">Comment text</label>
+            <input type="text" id="commentText" name="commentText"/>
+        </div>
+        <input type="hidden" name="blogPostId" value="{{id}}">
+        <input type="submit" value="Add Comment">
+    </form>
+
+    <h2>Comments</h2>
+    <ul>
+        {{#comments}}
+        <li>
+            <h3>{{username}}</h3>
+            <p>{{commentText}}</p>
+        </li>
+        {{/comments}}
+    </ul>
+</body>
+
+</html>

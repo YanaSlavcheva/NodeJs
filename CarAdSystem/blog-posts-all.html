@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All blog posts info</title>
+    {{>styles}}
+</head>
+
+<body>
+    {{>header}}
+    <h1>All Blog posts</h1>
+    <ul>
+        {{#blogPosts}}
+        <li>
+            <a href="/details/{{id}}">{{title}}</a>
+        </li>
+        {{/blogPosts}}
+    </ul>
+</body>
+
+</html>
