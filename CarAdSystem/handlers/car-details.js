@@ -29,6 +29,8 @@ module.exports = function (req, res) {
         let car = result[0]
         car.views = car.views + 1
 
+        console.log(comments)
+
         let commentsForCar = comments.filter(function (obj) {
           return obj.carId === car.id
         })

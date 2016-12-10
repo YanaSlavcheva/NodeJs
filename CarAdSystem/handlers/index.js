@@ -4,7 +4,7 @@ let addCar = require('./add-car')
 let readFile = require('./read-file')
 let carsAll = require('./cars-all')
 let carDetails = require('./car-details')
-let addCommentInfo = require('./add-comment-info')
+let addComment = require('./add-comment')
 
 module.exports = [
   favicon,
@@ -12,6 +12,6 @@ module.exports = [
   addCar,
   carsAll,
   carDetails,
-  addCommentInfo,
+  addComment,
   readFile
 ]

@@ -30,10 +30,10 @@ module.exports = function (req, res) {
       })
     } else if (req.method === 'POST') {
       let numberOfCarsSavedByNow = Object.keys(cars).length
-      let numberOfOurCar = numberOfCarsSavedByNow + 1
+      let numberOfMyCar = parseInt(numberOfCarsSavedByNow + 1)
 
       let myCar = ({
-        id: numberOfOurCar,
+        id: numberOfMyCar,
         createdOn: new Date(),
         isDeleted: false,
         views: 0
@@ -47,7 +47,7 @@ module.exports = function (req, res) {
       form.on('part', (part) => {
         if (part.filename) {
           let body = ''
-          let pathOfFileToSaveToDisk = '/content/images/' + numberOfOurCar + part.filename
+          let pathOfFileToSaveToDisk = '/content/images/' + numberOfMyCar + part.filename
           myCar.imagePath = pathOfFileToSaveToDisk
 
           // TODO: fix saving the images as valid image files

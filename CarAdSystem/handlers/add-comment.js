@@ -4,7 +4,7 @@ let qs = require('querystring')
 
 let mustache = require('./../node_modules/mustache/mustache')
 
-let commentsInfo = require('./../my-modules/comments-container.js')
+let comments = require('./../my-modules/comments-container.js')
 let headerModule = require('./../my-modules/header')
 let stylesSection = require('./../my-modules/styles')
 
@@ -39,20 +39,22 @@ module.exports = function (req, res) {
           let data = []
           let partials = { header: headerModule, styles: stylesSection }
 
-          let numberOfCommentsSavedByNow = Object.keys(commentsInfo).length
+          let numberOfCommentsSavedByNow = Object.keys(comments).length
+          let numberOfMyComment = parseInt(numberOfCommentsSavedByNow + 1)
+          let carId = parseInt(postData['carId'])
 
-          let myCommentInfo = ({
-            id: numberOfCommentsSavedByNow + 1,
+          let myComment = ({
+            id: numberOfMyComment,
             username: postData['username'],
             commentText: postData['commentText'],
             createdOn: new Date(),
-            blogPostId: postData['blogPostId']
+            carId: carId
           })
 
-          commentsInfo.push(myCommentInfo)
-          console.log(commentsInfo)
+          comments.push(myComment)
+          console.log(comments)
 
-          data = myCommentInfo
+          data = myComment
 
           fs.readFile(template, function (err, template) {
             if (err) throw err
